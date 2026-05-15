@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BLEMENU is a bold digital menu experience for venues that want their food, mood, and brand to hit as hard online as they do in person."
+    />
+    <title>BLEMENU | Klincher Digital Menu</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero" id="top">
+        <nav class="topbar">
+          <div class="brand-lockup">
+            <span class="brand-mark">BLEMENU</span>
+            <span class="brand-subtitle">Digital menu system</span>
+          </div>
+          <a class="ghost-link" href="#menu">Open menu</a>
+        </nav>
+
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Now serving the Klincher pilot</p>
+            <h1>KLINCHER</h1>
+            <p class="hero-tag">Eat like you play.</p>
+            <p class="hero-body">
+              A stage-ready restaurant menu rebuilt for phones, tablets, and
+              venue screens. Fast to browse, easy to update, and sharp enough
+              to feel like part of the brand instead of an afterthought.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#menu">Browse menu</a>
+              <a class="button button-secondary" href="#experience"
+                >See BLEMENU flow</a
+              >
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="visual-frame visual-stage">
+              <div class="visual-stage-header">
+                <span>Tonight's lineup</span>
+                <span>BLEMENU live</span>
+              </div>
+              <div class="visual-stage-grid">
+                <div class="visual-column">
+                  <p>Appetizers</p>
+                  <strong>Chicken Wings</strong>
+                  <strong>Dynamite Sticks</strong>
+                  <strong>Quesadilla</strong>
+                </div>
+                <div class="visual-column">
+                  <p>Main Event</p>
+                  <strong>Filet Mignon</strong>
+                  <strong>Surf and Turf</strong>
+                  <strong>Chicken Fettuccini</strong>
+                </div>
+              </div>
+              <div class="visual-stage-footer">
+                <span>Fast scan</span>
+                <span>Bold branding</span>
+                <span>Easy updates</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="signal-band" id="experience">
+          <div>
+            <p class="band-label">Built for live hospitality</p>
+            <h2>One menu, three jobs.</h2>
+          </div>
+          <div class="band-points">
+            <p>Guests scan and order faster.</p>
+            <p>Staff answer fewer repeat questions.</p>
+            <p>Operators update pricing and specials without reprinting.</p>
+          </div>
+        </section>
+
+        <section class="controls-section" id="menu">
+          <div class="controls-copy">
+            <p class="section-label">Interactive menu</p>
+            <h2>Filter by craving. Search by dish.</h2>
+          </div>
+
+          <div class="controls-panel">
+            <label class="search-field" for="menu-search">
+              <span>Search the menu</span>
+              <input
+                id="menu-search"
+                type="search"
+                placeholder="Chicken, pasta, cheesecake..."
+                autocomplete="off"
+              />
+            </label>
+            <div class="filter-strip" id="category-filters" aria-label="Categories"></div>
+          </div>
+        </section>
+
+        <section class="menu-layout">
+          <aside class="menu-sidebar">
+            <p class="section-label">Venue snapshot</p>
+            <h3>Klincher pilot notes</h3>
+            <ul class="sidebar-list">
+              <li>Concert-driven visual system with red, silver, and blackout contrast</li>
+              <li>Categories optimized for quick scanning on a phone in low light</li>
+              <li>Structure ready for QR menus, kiosks, or TV loops</li>
+            </ul>
+          </aside>
+
+          <div class="menu-sections" id="menu-sections"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="menu-section-template">
+      <section class="menu-section">
+        <div class="section-header">
+          <p class="section-label"></p>
+          <h3></h3>
+        </div>
+        <div class="items"></div>
+      </section>
+    </template>
+
+    <template id="menu-item-template">
+      <article class="menu-item">
+        <div class="item-copy">
+          <div class="item-header">
+            <h4></h4>
+            <span class="item-price"></span>
+          </div>
+          <p class="item-description"></p>
+        </div>
+        <div class="item-tags"></div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
