@@ -1,384 +1,179 @@
-const menuData = [
-  {
-    id: "appetizers",
-    label: "Appetizers",
-    eyebrow: "Eat like you play",
-    items: [
-      {
-        name: "Chicken Tenders",
-        price: "$12",
-        description:
-          "Five tenders served with your choice of sauce. Make it a platter with fries.",
-        tags: [],
-      },
-      {
-        name: "Hummus",
-        price: "$11",
-        description:
-          "Served with carrots, celery, cucumbers, broccoli, and warm flat bread.",
-        tags: [],
-      },
-      {
-        name: "Dynamite Sticks",
-        price: "$12",
-        description:
-          "Phyllo dough stuffed with sauteed vegetables, fried until golden brown, served with sweet red chili sauce.",
-        tags: [],
-      },
-      {
-        name: "Chicken Wings",
-        price: "$15",
-        description:
-          "Your choice of plain buffalo or BBQ sauce, served with ranch or blue cheese and celery sticks.",
-        tags: [],
-      },
-      {
-        name: "Shrimp Cocktail",
-        price: "$16",
-        description: "Chilled jumbo shrimp, served with cocktail sauce.",
-        tags: [],
-      },
-      {
-        name: "Shrimp Scampi",
-        price: "$17",
-        description:
-          "Pan seared shrimp tossed with white sambuca cream sauce with tomato and mushrooms.",
-        tags: [],
-      },
-      {
-        name: "Buffalo Style Shrimp",
-        price: "$17",
-        description:
-          "Cajun seasoned, char-broiled and smothered in our house buffalo sauce, topped with bleu cheese crumbs, served with ranch.",
-        tags: [],
-      },
-      {
-        name: "Quesadilla",
-        price: "$13",
-        description:
-          "Melted cheddar, provolone, bell peppers and red onions, served with salsa and sour cream. Add chicken or steak.",
-        tags: [],
-      },
-      {
-        name: "Tenderloin Ravioli",
-        price: "$15",
-        description: "Breaded four cheese ravioli served with marinara sauce.",
-        tags: [],
-      },
-      {
-        name: "Dessert Springs",
-        price: "$10",
-        description: "Phyllo dough, cinnamon sugar, and caramel sauce.",
-        tags: [],
-      },
-    ],
-  },
-  {
-    id: "salads-wraps",
-    label: "Salads / Wraps",
-    eyebrow: "Make any salad a wrap",
-    items: [
-      {
-        name: "Buffalo Chicken",
-        price: "$16",
-        description:
-          "Cajun chicken, char-broiled and sliced over mixed greens with cheese, tomatoes and bacon bits, tossed in our spicy ranch.",
-        tags: [],
-      },
-      {
-        name: "Chicken Caesar",
-        price: "$15",
-        description:
-          "Grilled or fried chicken over romaine, parmesan and croutons, tossed with a tangy caesar dressing.",
-        tags: [],
-      },
-      {
-        name: "House Salad",
-        price: "$12",
-        description:
-          "Fresh mixed greens with parmesan, provolone, bacon bits and green onions, tossed with sweet Italian vinaigrette.",
-        tags: [],
-      },
-    ],
-  },
-  {
-    id: "entrees",
-    label: "Entrees",
-    eyebrow: "Served with a salad and one side",
-    items: [
-      {
-        name: "Madga Chicken",
-        price: "$23",
-        description:
-          "Lightly breaded, topped with melted provolone, white wine mushroom and prosciutto sauce.",
-        tags: [],
-      },
-      {
-        name: "Filet Mignon",
-        price: "$34",
-        description: "8 oz grilled to perfection.",
-        tags: [],
-      },
-      {
-        name: "Surf and Turf",
-        price: "$36",
-        description: "8 oz filet mignon with three jumbo shrimp.",
-        tags: [],
-      },
-      {
-        name: "NY Strip",
-        price: "$31",
-        description: "12 oz grilled to perfection.",
-        tags: [],
-      },
-    ],
-  },
-  {
-    id: "sides",
-    label: "Sides",
-    eyebrow: "Pick one",
-    items: [
-      {
-        name: "Baked Potato",
-        price: "$6",
-        description: "",
-        tags: [],
-      },
-      {
-        name: "Loaded Baked Potato",
-        price: "$8",
-        description: "",
-        tags: [],
-      },
-      {
-        name: "Broccoli",
-        price: "$6",
-        description: "",
-        tags: [],
-      },
-      {
-        name: "Pasta",
-        price: "$7",
-        description: "",
-        tags: [],
-      },
-      {
-        name: "French Fries",
-        price: "$6",
-        description: "",
-        tags: [],
-      },
-      {
-        name: "Truffle French Fries",
-        price: "$8",
-        description: "",
-        tags: [],
-      },
-      {
-        name: "Seasonal Grilled Vegetables",
-        price: "$7",
-        description: "",
-        tags: [],
-      },
-    ],
-  },
-  {
-    id: "pasta",
-    label: "Pasta",
-    eyebrow: "Comfort turned up",
-    items: [
-      {
-        name: "Chicken Fettuccini",
-        price: "$19",
-        description:
-          "Grilled or blackened chicken in creamy mushroom garlic sauce with red onions.",
-        tags: [],
-      },
-      {
-        name: "Shrimp Sambuca",
-        price: "$22",
-        description: "Jumbo shrimp, fettuccini and sambuca sauce.",
-        tags: [],
-      },
-      {
-        name: "Shrimp Scampi",
-        price: "$22",
-        description:
-          "Jumbo shrimp and fettuccini tossed in our famous scampi sauce.",
-        tags: [],
-      },
-    ],
-  },
-  {
-    id: "dessert",
-    label: "Dessert",
-    eyebrow: "Encore",
-    items: [
-      {
-        name: "Brownie A La Mode",
-        price: "$11",
-        description:
-          "Warm chocolate chip brownie with vanilla bean ice cream.",
-        tags: [],
-      },
-      {
-        name: "Fried Cheesecake",
-        price: "$12",
-        description:
-          "Phyllo wrapped cheesecake, fried golden, topped with chocolate drizzle and powdered sugar.",
-        tags: [],
-      },
-    ],
-  },
-  {
-    id: "build-your-own",
-    label: "Build Your Own",
-    eyebrow: "Burger or chicken sandwich",
-    items: [
-      {
-        name: "Dress It Up",
-        price: "",
-        description:
-          "Cheddar cheese, provolone, bacon, mushrooms, jalapenos, and banana peppers.",
-        tags: [],
-      },
-    ],
-  },
-];
+const SUPABASE_URL = "";
+const SUPABASE_PUBLISHABLE_KEY = "";
+const SUPABASE_TABLE = "blemenu_form_submissions";
 
 const state = {
-  activeCategory: "all",
-  query: "",
+  configured: false,
 };
 
-function normalize(value) {
-  return value.trim().toLowerCase();
+function isConfigured() {
+  return Boolean(SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY);
 }
 
-function getFilters() {
-  return [{ id: "all", label: "All" }].concat(
-    menuData.map(({ id, label }) => ({ id, label }))
-  );
+function buildHeaders() {
+  return {
+    apikey: SUPABASE_PUBLISHABLE_KEY,
+    Authorization: `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
+    "Content-Type": "application/json",
+  };
 }
 
-function getVisibleSections() {
-  const normalizedQuery = normalize(state.query);
-
-  return menuData
-    .filter((section) => state.activeCategory === "all" || section.id === state.activeCategory)
-    .map((section) => ({
-      ...section,
-      items: section.items.filter((item) => {
-        if (!normalizedQuery) {
-          return true;
-        }
-
-        const haystack = `${item.name} ${item.description} ${item.tags.join(" ")}`.toLowerCase();
-        return haystack.includes(normalizedQuery);
-      }),
-    }))
-    .filter((section) => section.items.length > 0);
+function setStatus(message, tone) {
+  const statusNode = document.getElementById("form-status");
+  statusNode.textContent = message;
+  statusNode.classList.toggle("is-error", tone === "error");
 }
 
-function renderFilters() {
-  const filtersRoot = document.getElementById("category-filters");
-  filtersRoot.replaceChildren();
-
-  getFilters().forEach((filter) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `filter-chip${state.activeCategory === filter.id ? " is-active" : ""}`;
-    button.textContent = filter.label;
-    button.setAttribute("aria-pressed", String(state.activeCategory === filter.id));
-    button.addEventListener("click", () => {
-      state.activeCategory = filter.id;
-      renderMenu();
-      renderFilters();
-    });
-    filtersRoot.appendChild(button);
-  });
+function setConnectionPill(message, isLive) {
+  const pill = document.getElementById("connection-pill");
+  pill.textContent = message;
+  pill.classList.toggle("is-live", isLive);
 }
 
-function renderMenu() {
-  const sectionsRoot = document.getElementById("menu-sections");
-  const sectionTemplate = document.getElementById("menu-section-template");
-  const itemTemplate = document.getElementById("menu-item-template");
-  const visibleSections = getVisibleSections();
+function formatTimestamp(value) {
+  if (!value) {
+    return "Just now";
+  }
 
-  sectionsRoot.replaceChildren();
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "Just now";
+  }
 
-  if (!visibleSections.length) {
-    const emptyState = document.createElement("div");
-    emptyState.className = "empty-state";
-    emptyState.textContent =
-      "No dishes matched that search. Try a different keyword or clear the category filter.";
-    sectionsRoot.appendChild(emptyState);
+  return date.toLocaleString();
+}
+
+function renderRecentSubmissions(rows) {
+  const root = document.getElementById("recent-submissions");
+  root.replaceChildren();
+
+  if (!rows.length) {
+    const emptyNode = document.createElement("p");
+    emptyNode.className = "empty-feed";
+    emptyNode.textContent = "No submissions have landed in Supabase yet.";
+    root.appendChild(emptyNode);
     return;
   }
 
-  visibleSections.forEach((section) => {
-    const sectionFragment = sectionTemplate.content.cloneNode(true);
-    const sectionNode = sectionFragment.querySelector(".menu-section");
-    sectionNode.id = section.id;
-    sectionFragment.querySelector(".section-label").textContent = section.eyebrow;
-    sectionFragment.querySelector("h3").textContent = section.label;
+  rows.forEach((row) => {
+    const card = document.createElement("article");
+    card.className = "feed-item";
 
-    const itemsRoot = sectionFragment.querySelector(".items");
+    const title = document.createElement("p");
+    title.className = "feed-item-title";
+    title.textContent = row.item_name || "Untitled item";
 
-    section.items.forEach((item) => {
-      const itemFragment = itemTemplate.content.cloneNode(true);
-      itemFragment.querySelector("h4").textContent = item.name;
+    const meta = document.createElement("p");
+    meta.className = "feed-item-meta";
+    meta.textContent = `${row.venue_name || "Unknown venue"} | ${row.menu_section || "No section"} | ${formatTimestamp(row.created_at)}`;
 
-      const priceNode = itemFragment.querySelector(".item-price");
-      if (item.price) {
-        priceNode.textContent = item.price;
-      } else {
-        priceNode.remove();
-      }
+    card.appendChild(title);
+    card.appendChild(meta);
+    root.appendChild(card);
+  });
+}
 
-      const descriptionNode = itemFragment.querySelector(".item-description");
-      if (item.description) {
-        descriptionNode.textContent = item.description;
-      } else {
-        descriptionNode.remove();
-      }
+async function fetchRecentSubmissions() {
+  if (!state.configured) {
+    return;
+  }
 
-      const tagsRoot = itemFragment.querySelector(".item-tags");
-      if (item.tags.length) {
-        item.tags.forEach((tag) => {
-          const tagNode = document.createElement("span");
-          tagNode.className = "item-tag";
-          tagNode.textContent = tag;
-          tagsRoot.appendChild(tagNode);
-        });
-      } else {
-        tagsRoot.remove();
-      }
+  const query = new URLSearchParams({
+    select: "venue_name,menu_section,item_name,created_at",
+    order: "created_at.desc",
+    limit: "6",
+  });
 
-      itemsRoot.appendChild(itemFragment);
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?${query.toString()}`, {
+    method: "GET",
+    headers: buildHeaders(),
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to load recent submissions.");
+  }
+
+  const rows = await response.json();
+  renderRecentSubmissions(Array.isArray(rows) ? rows : []);
+}
+
+function getFormPayload(form) {
+  const formData = new FormData(form);
+
+  return {
+    venue_name: String(formData.get("venue_name") || "").trim(),
+    menu_section: String(formData.get("menu_section") || "").trim(),
+    contact_name: String(formData.get("contact_name") || "").trim(),
+    contact_email: String(formData.get("contact_email") || "").trim(),
+    contact_phone: String(formData.get("contact_phone") || "").trim(),
+    submission_source: String(formData.get("submission_source") || "").trim(),
+    item_name: String(formData.get("item_name") || "").trim(),
+    item_description: String(formData.get("item_description") || "").trim(),
+    dietary_notes: String(formData.get("dietary_notes") || "").trim(),
+    handoff_notes: String(formData.get("handoff_notes") || "").trim(),
+  };
+}
+
+async function submitForm(event) {
+  event.preventDefault();
+
+  if (!state.configured) {
+    setStatus("Add the Supabase URL and publishable key in app.js before submitting.", "error");
+    return;
+  }
+
+  const form = event.currentTarget;
+  const button = document.getElementById("submit-button");
+  const payload = getFormPayload(form);
+
+  button.disabled = true;
+  setStatus("Sending submission to Supabase...");
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
+      method: "POST",
+      headers: {
+        ...buildHeaders(),
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify(payload),
     });
 
-    sectionsRoot.appendChild(sectionFragment);
-  });
+    if (!response.ok) {
+      throw new Error("Supabase rejected the submission.");
+    }
+
+    form.reset();
+    document.getElementById("submission-source").value = "github-static-intake";
+    setStatus("Submission sent to Supabase.");
+    await fetchRecentSubmissions();
+  } catch (error) {
+    setStatus(error.message || "Something went wrong while sending the form.", "error");
+  } finally {
+    button.disabled = false;
+  }
 }
 
-function bindSearch() {
-  const searchInput = document.getElementById("menu-search");
-  searchInput.value = state.query;
-  searchInput.addEventListener("input", (event) => {
-    state.query = event.target.value;
-    renderMenu();
-  });
-}
+function initializeStaticState() {
+  const form = document.getElementById("submission-form");
+  state.configured = isConfigured();
 
-function initializeMenu() {
-  bindSearch();
-  renderFilters();
-  renderMenu();
+  if (state.configured) {
+    setConnectionPill("Supabase connected", true);
+    setStatus("Connected to Supabase.");
+    fetchRecentSubmissions().catch(() => {
+      setStatus("Connected, but recent submissions could not be loaded.", "error");
+    });
+  } else {
+    setConnectionPill("Supabase not configured yet", false);
+    setStatus("Add the Supabase URL and publishable key in app.js before submitting.");
+  }
+
+  form.addEventListener("submit", submitForm);
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializeMenu, { once: true });
+  document.addEventListener("DOMContentLoaded", initializeStaticState, { once: true });
 } else {
-  initializeMenu();
+  initializeStaticState();
 }
