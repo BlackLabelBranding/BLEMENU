@@ -1,14 +1,12 @@
 {
   "name": "blemenu",
   "version": "1.0.0",
-  "description": "Mobile-friendly catering menu form with PDF export",
+  "description": "React-based digital menu experience for venues and hospitality brands",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "jspdf": "^2.5.1",
-    "html2canvas": "^1.4.1"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
