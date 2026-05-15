@@ -1,134 +1,100 @@
-# 🍽️ Black Label Branding Catering Menu
+# BLEMENU
 
-A mobile-friendly React application for catering orders. Customers can scan a QR code, browse menu items, select quantities, enter their information, and download a professional PDF of their order.
+BLEMENU is a React-based digital menu experience for venue, restaurant, and hospitality brands that want a stronger mobile-first menu than a plain PDF or static image.
 
-## Features
+The current build ships a KLUNCHER-themed pilot menu with bold branding, responsive layout, category filtering, and live search.
 
-✅ **Mobile Optimized**
-- Fully responsive design for all devices
-- Touch-friendly interface
-- Optimized for QR code scanning
+## Current App
 
-✅ **Interactive Menu**
-- Browse items by category (Appetizers, Main Course, Sides, Desserts)
-- Add/remove items with quantity selectors
-- Real-time order summary with tax calculation
+This version includes:
 
-✅ **Customer Information Collection**
-- Name, email, phone
-- Event date picker
-- Special notes and dietary restrictions
+- A branded hero section built around the KLUNCHER pilot
+- Responsive menu browsing for phone and desktop
+- Category filters for fast scanning
+- Live search across dishes and tags
+- Structured menu content stored in a single data file
 
-✅ **PDF Generation**
-- Professional, printable order format
-- Unique order IDs for tracking
-- Auto-download to device
-- Includes customer details, item list, and totals
+## Tech Stack
 
-## Installation
+- React 18
+- react-scripts 5
+- CSS
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/BlackLabelBranding/BLEMENU.git
-   cd BLEMENU
-   ```
+Note: `jspdf` and `html2canvas` are still listed in `package.json` from the earlier scaffold, but they are not used by the current app build.
 
+## Project Structure
+
+```text
+BLEMENU/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.js
+│   ├── index.css
+│   ├── index.js
+│   └── menuData.js
+├── package.json
+└── README.md
+```
+
+## Getting Started
+
+1. Clone the repository.
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
+
+```bash
+npm install
+```
 
 3. Start the development server:
-   ```bash
-   npm start
-   ```
 
-The app will open at `http://localhost:3000`
+```bash
+npm start
+```
 
-## Building for Production
+4. Open the app at `http://localhost:3000`.
+
+## Production Build
 
 ```bash
 npm run build
 ```
 
-This creates an optimized production build in the `build/` directory.
+This creates the production bundle in the `build/` directory.
 
-## Customization
+## Content Updates
 
-### Update Menu Items
-Edit `src/utils/menuData.js` to add, remove, or modify menu items:
+Menu content lives in `src/menuData.js`.
 
-```javascript
-{
-  id: 'unique-id',
-  category: 'Category Name',
-  name: 'Item Name',
-  description: 'Item description',
-  price: 9.99,
-  servings: 'per serving'
-}
-```
+Update that file when you want to:
 
-### Update Branding
-- Update company name and colors in component files
-- Modify header text in `src/components/MenuForm.js`
-- Update colors in CSS files (currently using orange/yellow theme)
+- change dish names
+- update descriptions
+- adjust pricing
+- add or remove categories
+- tune the searchable tags
 
-### Change Tax Rate
-Edit the `TAX_RATE` variable in `src/components/OrderSummary.js` and `src/utils/pdfGenerator.js`
+## Styling Updates
 
-### Deploy to Production
+Visual styling lives in `src/index.css`.
 
-The app can be deployed to:
-- **Vercel**: `npm install -g vercel` then `vercel`
-- **Netlify**: Connect GitHub repo to Netlify dashboard
-- **GitHub Pages**: `npm run build` and push to `gh-pages` branch
-- **Any hosting**: Upload contents of `build/` folder
+That file controls:
 
-## Project Structure
+- the dark KLUNCHER-inspired palette
+- hero layout
+- responsive spacing
+- menu section styling
+- filter and search presentation
 
-```
-BLEMENU/
-├── public/
-│   └── index.html
-├── src/
-│   ├── components/
-│   │   ├── MenuForm.js
-│   │   ├── MenuForm.css
-│   │   ├── MenuItems.js
-│   │   ├── MenuItems.css
-│   │   ├── OrderSummary.js
-│   │   └── OrderSummary.css
-│   ├── utils/
-│   │   ├── menuData.js
-│   │   └── pdfGenerator.js
-│   ├── App.js
-│   ├── App.css
-│   ├── index.js
-│   └── index.css
-├── package.json
-└── README.md
-```
+## Next Product Steps
 
-## Technologies Used
+Natural next upgrades for BLEMENU:
 
-- **React 18**: UI framework
-- **jsPDF**: PDF generation
-- **html2canvas**: PDF styling support
-- **CSS3**: Responsive design
-
-## QR Code Setup
-
-1. Deploy the app to a public URL
-2. Generate a QR code pointing to your domain using any QR code generator
-3. Customers can scan the QR code with their phone to access the menu
-
-## Notes
-
-- All PDFs are generated client-side (no server required)
-- Data is not stored - each order is independent
-- Mobile-first design ensures excellent UX on phones
-- Tax rate defaults to 8% (configurable)
+- QR-code entry flow
+- admin-managed menu editing
+- Supabase-backed menu storage
+- venue-level theming per client
+- ordering or reservation integration
 
 ## License
 
