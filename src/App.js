@@ -169,17 +169,23 @@ function App() {
                         <div className="item-copy">
                           <div className="item-header">
                             <h4>{item.name}</h4>
-                            <span className="item-price">{item.price}</span>
+                            {item.price ? (
+                              <span className="item-price">{item.price}</span>
+                            ) : null}
                           </div>
-                          <p className="item-description">{item.description}</p>
+                          {item.description ? (
+                            <p className="item-description">{item.description}</p>
+                          ) : null}
                         </div>
-                        <div className="item-tags">
-                          {item.tags.map((tag) => (
-                            <span className="item-tag" key={`${item.name}-${tag}`}>
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                        {item.tags.length ? (
+                          <div className="item-tags">
+                            {item.tags.map((tag) => (
+                              <span className="item-tag" key={`${item.name}-${tag}`}>
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        ) : null}
                       </article>
                     ))}
                   </div>
