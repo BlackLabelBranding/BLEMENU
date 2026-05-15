@@ -1,6 +1,7 @@
 const SUPABASE_URL = "";
 const SUPABASE_PUBLISHABLE_KEY = "";
 const SUPABASE_TABLE = "blemenu_form_submissions";
+const SUPABASE_PUBLIC_FEED = "blemenu_form_submission_public";
 
 const state = {
   configured: false,
@@ -84,7 +85,7 @@ async function fetchRecentSubmissions() {
     limit: "6",
   });
 
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?${query.toString()}`, {
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_PUBLIC_FEED}?${query.toString()}`, {
     method: "GET",
     headers: buildHeaders(),
   });
