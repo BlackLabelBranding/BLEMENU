@@ -43,8 +43,8 @@ function App() {
 
         <div className="hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Now serving the KLUNCHER pilot</p>
-            <h1>KLUNCHER</h1>
+            <p className="eyebrow">Now serving the Klincher pilot</p>
+            <h1>KLINCHER</h1>
             <p className="hero-tag">Eat like you play.</p>
             <p className="hero-body">
               A stage-ready restaurant menu rebuilt for phones, tablets, and venue
@@ -143,7 +143,7 @@ function App() {
         <section className="menu-layout">
           <aside className="menu-sidebar">
             <p className="section-label">Venue snapshot</p>
-            <h3>KLUNCHER pilot notes</h3>
+            <h3>Klincher pilot notes</h3>
             <ul className="sidebar-list">
               <li>
                 Concert-driven visual system with red, silver, and blackout contrast
