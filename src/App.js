@@ -1,205 +1,292 @@
-import { useMemo, useState } from "react";
-import { menuData } from "./menuData";
+import { useState } from "react";
+
+const menuGroups = [
+  {
+    title: "Appetizers",
+    items: [
+      "Chicken Tenders",
+      "Hummus",
+      "Dynamite Sticks",
+      "Chicken Wings",
+      "Shrimp Cocktail",
+      "Shrimp Scampi",
+      "Buffalo Style Shrimp",
+      "Quesadilla",
+      "Tenderloin Ravioli",
+      "Dessert Springs",
+    ],
+  },
+  {
+    title: "Salads / Wraps",
+    items: ["Buffalo Chicken", "Chicken Caesar", "House Salad"],
+    secondaryTitle: "Entrees",
+    secondaryItems: ["Madga Chicken", "Filet Mignon", "Surf and Turf", "NY Strip"],
+  },
+  {
+    title: "Sides",
+    items: [
+      "Baked Potato",
+      "Loaded Baked Potato",
+      "Broccoli",
+      "Pasta",
+      "French Fries",
+      "Truffle French Fries",
+      "Seasonal Grilled Vegetables",
+    ],
+    secondaryTitle: "Pasta + Dessert",
+    secondaryItems: [
+      "Chicken Fettuccini",
+      "Shrimp Sambuca",
+      "Shrimp Scampi",
+      "Brownie A La Mode",
+      "Fried Cheesecake",
+    ],
+  },
+];
+
+const requestTypes = [
+  "Pickup Order",
+  "Game Day Order",
+  "Catering Inquiry",
+  "Large Group Request",
+];
 
 function App() {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [query, setQuery] = useState("");
+  const [status, setStatus] = useState("");
 
-  const filters = [
-    { id: "all", label: "All" },
-    ...menuData.map(({ id, label }) => ({ id, label })),
-  ];
+  function handleSubmit(event) {
+    event.preventDefault();
 
-  const visibleSections = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-    return menuData
-      .filter((section) => activeCategory === "all" || section.id === activeCategory)
-      .map((section) => ({
-        ...section,
-        items: section.items.filter((item) => {
-          if (!normalizedQuery) return true;
+    const requiredFields = [
+      ["name", "Name"],
+      ["phone", "Phone"],
+      ["email", "Email"],
+      ["pickup_date", "Pickup Date"],
+      ["pickup_time", "Pickup Time"],
+      ["request_type", "Request Type"],
+      ["items", "Menu Items and Quantities"],
+    ];
 
-          const haystack =
-            `${item.name} ${item.description} ${item.tags.join(" ")}`.toLowerCase();
-          return haystack.includes(normalizedQuery);
-        }),
-      }))
-      .filter((section) => section.items.length > 0);
-  }, [activeCategory, query]);
+    const missing = requiredFields.find(([key]) => {
+      return !String(formData.get(key) || "").trim();
+    });
+
+    if (missing) {
+      setStatus(`${missing[1]} is required.`);
+      return;
+    }
+
+    const lines = [
+      "New Klincher Order Request",
+      "",
+      `Name: ${formData.get("name")}`,
+      `Phone: ${formData.get("phone")}`,
+      `Email: ${formData.get("email")}`,
+      `Request Type: ${formData.get("request_type")}`,
+      `Pickup Date: ${formData.get("pickup_date")}`,
+      `Pickup Time: ${formData.get("pickup_time")}`,
+      "",
+      "Menu Items and Quantities:",
+      `${formData.get("items")}`,
+      "",
+      "Notes:",
+      `${formData.get("notes") || "None"}`,
+    ];
+
+    const subject = encodeURIComponent(`Klincher Order Request - ${formData.get("name")}`);
+    const body = encodeURIComponent(lines.join("\n"));
+
+    window.location.href = `mailto:orders@klincher.local?subject=${subject}&body=${body}`;
+    setStatus("Your email draft is ready. If nothing opened, check your default mail app.");
+  }
 
   return (
     <div className="page-shell">
       <header className="hero" id="top">
-        <nav className="topbar">
-          <div className="brand-lockup">
-            <span className="brand-mark">BLEMENU</span>
-            <span className="brand-subtitle">Digital menu system</span>
-          </div>
-          <a className="ghost-link" href="#menu">
-            Open menu
+        <div className="hero-overlay" />
+        <nav className="site-nav">
+          <a className="brand-mark" href="#top">
+            Klincher
           </a>
+          <div className="nav-links">
+            <a href="#menu">Menu</a>
+            <a href="#order">Order Form</a>
+          </div>
         </nav>
 
         <div className="hero-grid">
-          <div className="hero-copy">
-            <p className="eyebrow">Now serving the Klincher pilot</p>
-            <h1>KLINCHER</h1>
-            <p className="hero-tag">Eat like you play.</p>
-            <p className="hero-body">
-              A stage-ready restaurant menu rebuilt for phones, tablets, and venue
-              screens. Fast to browse, easy to update, and sharp enough to feel like
-              part of the brand instead of an afterthought.
+          <section className="hero-copy">
+            <p className="eyebrow">Game Day Kitchen</p>
+            <h1>Klincher</h1>
+            <p className="tagline">Eat Like You Play</p>
+            <p className="hero-text">
+              Big flavor, no fluff, and a one-page order request flow that gets straight
+              to the point.
             </p>
-
             <div className="hero-actions">
-              <a className="button button-primary" href="#menu">
-                Browse menu
+              <a className="button button-primary" href="#order">
+                Start Your Order
               </a>
-              <a className="button button-secondary" href="#experience">
-                See BLEMENU flow
+              <a className="button button-secondary" href="#menu">
+                See The Menu
               </a>
             </div>
-          </div>
+          </section>
 
-          <div className="hero-visual" aria-hidden="true">
-            <div className="visual-frame visual-stage">
-              <div className="visual-stage-header">
-                <span>Tonight&apos;s lineup</span>
-                <span>BLEMENU live</span>
-              </div>
-              <div className="visual-stage-grid">
-                <div className="visual-column">
-                  <p>Appetizers</p>
-                  <strong>Chicken Wings</strong>
-                  <strong>Dynamite Sticks</strong>
-                  <strong>Quesadilla</strong>
-                </div>
-                <div className="visual-column">
-                  <p>Main Event</p>
-                  <strong>Filet Mignon</strong>
-                  <strong>Surf and Turf</strong>
-                  <strong>Chicken Fettuccini</strong>
-                </div>
-              </div>
-              <div className="visual-stage-footer">
-                <span>Fast scan</span>
-                <span>Bold branding</span>
-                <span>Easy updates</span>
-              </div>
-            </div>
-          </div>
+          <aside className="hero-panel">
+            <p className="panel-kicker">Order Fast</p>
+            <h2>Send your request in one form.</h2>
+            <p>
+              Pick your sections, tell us what you want, choose a pickup window, and
+              send it over without hunting through a giant menu board.
+            </p>
+            <ul className="hero-points">
+              <li>Clean one-page ordering</li>
+              <li>Menu sections laid out clearly</li>
+              <li>Built for phone and desktop</li>
+            </ul>
+          </aside>
         </div>
       </header>
 
       <main>
-        <section className="signal-band" id="experience">
-          <div>
-            <p className="band-label">Built for live hospitality</p>
-            <h2>One menu, three jobs.</h2>
-          </div>
-          <div className="band-points">
-            <p>Guests scan and order faster.</p>
-            <p>Staff answer fewer repeat questions.</p>
-            <p>Operators update pricing and specials without reprinting.</p>
-          </div>
-        </section>
-
-        <section className="controls-section" id="menu">
-          <div className="controls-copy">
-            <p className="section-label">Interactive menu</p>
-            <h2>Filter by craving. Search by dish.</h2>
+        <section className="menu-strip" id="menu">
+          <div className="section-heading">
+            <p className="eyebrow">Menu</p>
+            <h2>What People Are Ordering</h2>
           </div>
 
-          <div className="controls-panel">
-            <label className="search-field" htmlFor="menu-search">
-              <span>Search the menu</span>
-              <input
-                id="menu-search"
-                type="search"
-                placeholder="Chicken, pasta, cheesecake..."
-                autoComplete="off"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-              />
-            </label>
-            <div className="filter-strip" aria-label="Categories">
-              {filters.map((filter) => (
-                <button
-                  key={filter.id}
-                  className={`filter-chip${
-                    activeCategory === filter.id ? " is-active" : ""
-                  }`}
-                  type="button"
-                  onClick={() => setActiveCategory(filter.id)}
-                >
-                  {filter.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
+          <div className="menu-columns">
+            {menuGroups.map((group) => (
+              <section className="menu-band" key={group.title}>
+                <h3>{group.title}</h3>
+                <ul className="menu-list">
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
 
-        <section className="menu-layout">
-          <aside className="menu-sidebar">
-            <p className="section-label">Venue snapshot</p>
-            <h3>Klincher pilot notes</h3>
-            <ul className="sidebar-list">
-              <li>
-                Concert-driven visual system with red, silver, and blackout contrast
-              </li>
-              <li>
-                Categories optimized for quick scanning on a phone in low light
-              </li>
-              <li>Structure ready for QR menus, kiosks, or TV loops</li>
-            </ul>
-          </aside>
-
-          <div className="menu-sections">
-            {visibleSections.length ? (
-              visibleSections.map((section) => (
-                <section className="menu-section is-visible" id={section.id} key={section.id}>
-                  <div className="section-header">
-                    <p className="section-label">{section.eyebrow}</p>
-                    <h3>{section.label}</h3>
-                  </div>
-                  <div className="items">
-                    {section.items.map((item) => (
-                      <article className="menu-item" key={item.name}>
-                        <div className="item-copy">
-                          <div className="item-header">
-                            <h4>{item.name}</h4>
-                            {item.price ? (
-                              <span className="item-price">{item.price}</span>
-                            ) : null}
-                          </div>
-                          {item.description ? (
-                            <p className="item-description">{item.description}</p>
-                          ) : null}
-                        </div>
-                        {item.tags.length ? (
-                          <div className="item-tags">
-                            {item.tags.map((tag) => (
-                              <span className="item-tag" key={`${item.name}-${tag}`}>
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        ) : null}
-                      </article>
+                {group.secondaryTitle ? <h3>{group.secondaryTitle}</h3> : null}
+                {group.secondaryItems ? (
+                  <ul className="menu-list">
+                    {group.secondaryItems.map((item) => (
+                      <li key={item}>{item}</li>
                     ))}
-                  </div>
-                </section>
-              ))
-            ) : (
-              <div className="empty-state">
-                No dishes matched that search. Try a different keyword or clear the
-                category filter.
+                  </ul>
+                ) : null}
+              </section>
+            ))}
+          </div>
+        </section>
+
+        <section className="build-strip">
+          <div className="build-copy">
+            <p className="eyebrow">Custom</p>
+            <h2>Build Your Own Burger or Chicken Sandwich</h2>
+            <p>
+              Dress it up with cheddar cheese, provolone, bacon, mushrooms, jalapenos,
+              or banana peppers.
+            </p>
+          </div>
+        </section>
+
+        <section className="form-section" id="order">
+          <div className="section-heading">
+            <p className="eyebrow">Order Form</p>
+            <h2>One Page. One Form. Done.</h2>
+          </div>
+
+          <div className="form-layout">
+            <section className="form-intro">
+              <h3>How this works</h3>
+              <p>
+                Fill out the request, list the items you want, and the form will draft
+                the message for you in your email app so you can send it right away.
+              </p>
+              <ul className="info-list">
+                <li>Use one form for pickup requests, game-day catering, or larger food orders.</li>
+                <li>Include quantities in the item box exactly how you want them prepared.</li>
+                <li>Everything is built around a fast, simple request flow.</li>
+              </ul>
+            </section>
+
+            <form className="order-form" onSubmit={handleSubmit}>
+              <div className="field-grid">
+                <label className="field">
+                  <span>Name</span>
+                  <input type="text" name="name" autoComplete="name" required />
+                </label>
+
+                <label className="field">
+                  <span>Phone</span>
+                  <input type="tel" name="phone" autoComplete="tel" required />
+                </label>
+
+                <label className="field">
+                  <span>Email</span>
+                  <input type="email" name="email" autoComplete="email" required />
+                </label>
+
+                <label className="field">
+                  <span>Pickup Date</span>
+                  <input type="date" name="pickup_date" required />
+                </label>
+
+                <label className="field">
+                  <span>Pickup Time</span>
+                  <input type="time" name="pickup_time" required />
+                </label>
+
+                <label className="field">
+                  <span>Request Type</span>
+                  <select name="request_type" defaultValue="" required>
+                    <option value="">Choose one</option>
+                    {requestTypes.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
+                </label>
               </div>
-            )}
+
+              <label className="field">
+                <span>Menu Items and Quantities</span>
+                <textarea
+                  name="items"
+                  rows="7"
+                  placeholder="Example: 2 Chicken Tenders, 1 House Salad, 1 order Truffle French Fries"
+                  required
+                />
+              </label>
+
+              <label className="field">
+                <span>Notes</span>
+                <textarea
+                  name="notes"
+                  rows="4"
+                  placeholder="Add sauces, pickup details, allergies, or anything else we should know."
+                />
+              </label>
+
+              <div className="form-actions">
+                <button className="button button-primary" type="submit">
+                  Draft My Order Email
+                </button>
+                <p className="form-status" role="status" aria-live="polite">
+                  {status}
+                </p>
+              </div>
+            </form>
           </div>
         </section>
       </main>
+
+      <footer className="site-footer">
+        <p>Klincher</p>
+        <a href="#order">Start Order</a>
+      </footer>
     </div>
   );
 }
