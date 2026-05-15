@@ -2,13 +2,13 @@
 
 BLEMENU is a React-based digital menu experience for venue, restaurant, and hospitality brands that want a stronger mobile-first menu than a plain PDF or static image.
 
-The current build ships a KLUNCHER-themed pilot menu with bold branding, responsive layout, category filtering, and live search.
+The current build ships a Klincher-themed pilot menu with bold branding, responsive layout, category filtering, and live search.
 
 ## Current App
 
 This version includes:
 
-- A branded hero section built around the KLUNCHER pilot
+- A branded hero section built around the Klincher pilot
 - Responsive menu browsing for phone and desktop
 - Category filters for fast scanning
 - Live search across dishes and tags
@@ -19,8 +19,6 @@ This version includes:
 - React 18
 - react-scripts 5
 - CSS
-
-Note: `jspdf` and `html2canvas` are still listed in `package.json` from the earlier scaffold, but they are not used by the current app build.
 
 ## Project Structure
 
@@ -80,7 +78,7 @@ Visual styling lives in `src/index.css`.
 
 That file controls:
 
-- the dark KLUNCHER-inspired palette
+- the dark Klincher-inspired palette
 - hero layout
 - responsive spacing
 - menu section styling
