@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="BLEMENU is a bold digital menu experience for venues that want their food, mood, and brand to hit as hard online as they do in person."
+      content="BLEMENU intake form for collecting menu content without pricing and sending submissions into Supabase."
     />
-    <title>BLEMENU | Klincher Digital Menu</title>
+    <title>BLEMENU | Menu Intake Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -16,131 +22,160 @@
         <nav class="topbar">
           <div class="brand-lockup">
             <span class="brand-mark">BLEMENU</span>
-            <span class="brand-subtitle">Digital menu system</span>
+            <span class="brand-subtitle">Supabase intake workflow</span>
           </div>
-          <a class="ghost-link" href="#menu">Open menu</a>
+          <a class="ghost-link" href="#intake-form">Open form</a>
         </nav>
 
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Now serving the Klincher pilot</p>
-            <h1>KLINCHER</h1>
-            <p class="hero-tag">Eat like you play.</p>
+            <p class="eyebrow">GitHub-hosted intake surface</p>
+            <h1>Menu Form</h1>
+            <p class="hero-tag">No prices. Clean copy. Fast handoff.</p>
             <p class="hero-body">
-              A stage-ready restaurant menu rebuilt for phones, tablets, and
-              venue screens. Fast to browse, easy to update, and sharp enough
-              to feel like part of the brand instead of an afterthought.
+              Capture venue menu content in a form-first workflow, store it in Supabase,
+              and keep the public surface simple enough to manage directly from GitHub.
             </p>
 
             <div class="hero-actions">
-              <a class="button button-primary" href="#menu">Browse menu</a>
-              <a class="button button-secondary" href="#experience"
-                >See BLEMENU flow</a
-              >
+              <a class="button button-primary" href="#intake-form">Start intake</a>
+              <a class="button button-secondary" href="#submission-feed">Recent entries</a>
             </div>
           </div>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="visual-frame visual-stage">
-              <div class="visual-stage-header">
-                <span>Tonight's lineup</span>
-                <span>BLEMENU live</span>
-              </div>
-              <div class="visual-stage-grid">
-                <div class="visual-column">
-                  <p>Appetizers</p>
-                  <strong>Chicken Wings</strong>
-                  <strong>Dynamite Sticks</strong>
-                  <strong>Quesadilla</strong>
-                </div>
-                <div class="visual-column">
-                  <p>Main Event</p>
-                  <strong>Filet Mignon</strong>
-                  <strong>Surf and Turf</strong>
-                  <strong>Chicken Fettuccini</strong>
-                </div>
-              </div>
-              <div class="visual-stage-footer">
-                <span>Fast scan</span>
-                <span>Bold branding</span>
-                <span>Easy updates</span>
-              </div>
-            </div>
+          <div class="hero-panel" aria-label="BLEMENU form summary">
+            <div class="panel-kicker">Form focus</div>
+            <h2>Built for operator input</h2>
+            <ul class="panel-list">
+              <li>Menu item intake with no pricing fields</li>
+              <li>Supabase-ready submission flow for static hosting</li>
+              <li>Sharper type treatment with less visual blur</li>
+            </ul>
+            <div class="panel-note" id="connection-pill">Supabase not configured yet</div>
           </div>
         </div>
       </header>
 
       <main>
-        <section class="signal-band" id="experience">
+        <section class="signal-band" id="form-intro">
           <div>
-            <p class="band-label">Built for live hospitality</p>
-            <h2>One menu, three jobs.</h2>
+            <p class="band-label">What this captures</p>
+            <h2>Venue details, item details, and handoff notes.</h2>
           </div>
           <div class="band-points">
-            <p>Guests scan and order faster.</p>
-            <p>Staff answer fewer repeat questions.</p>
-            <p>Operators update pricing and specials without reprinting.</p>
+            <p>Use one submission per menu item so data stays clean.</p>
+            <p>Pricing is intentionally excluded from this workflow.</p>
+            <p>Recent Supabase records can be pulled back into the page once connected.</p>
           </div>
         </section>
 
-        <section class="controls-section" id="menu">
-          <div class="controls-copy">
-            <p class="section-label">Interactive menu</p>
-            <h2>Filter by craving. Search by dish.</h2>
-          </div>
+        <section class="workspace-grid">
+          <section class="form-shell" id="intake-form">
+            <div class="section-heading">
+              <p class="section-label">BLEMENU intake</p>
+              <h2>Submit menu content</h2>
+            </div>
 
-          <div class="controls-panel">
-            <label class="search-field" for="menu-search">
-              <span>Search the menu</span>
-              <input
-                id="menu-search"
-                type="search"
-                placeholder="Chicken, pasta, cheesecake..."
-                autocomplete="off"
-              />
-            </label>
-            <div class="filter-strip" id="category-filters" aria-label="Categories"></div>
-          </div>
-        </section>
+            <form class="intake-form" id="submission-form">
+              <div class="field-grid field-grid-two">
+                <label class="field">
+                  <span>Venue name</span>
+                  <input id="venue-name" name="venue_name" type="text" placeholder="Klincher" required />
+                </label>
+                <label class="field">
+                  <span>Menu section</span>
+                  <select id="menu-section" name="menu_section" required>
+                    <option value="">Choose a section</option>
+                    <option>Appetizers</option>
+                    <option>Salads / Wraps</option>
+                    <option>Entrees</option>
+                    <option>Sides</option>
+                    <option>Pasta</option>
+                    <option>Dessert</option>
+                    <option>Specials</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+              </div>
 
-        <section class="menu-layout">
-          <aside class="menu-sidebar">
-            <p class="section-label">Venue snapshot</p>
-            <h3>Klincher pilot notes</h3>
-            <ul class="sidebar-list">
-              <li>Concert-driven visual system with red, silver, and blackout contrast</li>
-              <li>Categories optimized for quick scanning on a phone in low light</li>
-              <li>Structure ready for QR menus, kiosks, or TV loops</li>
-            </ul>
+              <div class="field-grid field-grid-two">
+                <label class="field">
+                  <span>Contact name</span>
+                  <input id="contact-name" name="contact_name" type="text" placeholder="Lance Garza" required />
+                </label>
+                <label class="field">
+                  <span>Contact email</span>
+                  <input id="contact-email" name="contact_email" type="email" placeholder="name@example.com" required />
+                </label>
+              </div>
+
+              <div class="field-grid field-grid-two">
+                <label class="field">
+                  <span>Contact phone</span>
+                  <input id="contact-phone" name="contact_phone" type="tel" placeholder="Optional" />
+                </label>
+                <label class="field">
+                  <span>Internal reference</span>
+                  <input id="submission-source" name="submission_source" type="text" value="github-static-intake" />
+                </label>
+              </div>
+
+              <div class="field-grid field-grid-single">
+                <label class="field">
+                  <span>Item name</span>
+                  <input id="item-name" name="item_name" type="text" placeholder="Chicken Wings" required />
+                </label>
+              </div>
+
+              <div class="field-grid field-grid-single">
+                <label class="field field-tall">
+                  <span>Item description</span>
+                  <textarea id="item-description" name="item_description" rows="5" placeholder="Write the public-facing description here." required></textarea>
+                </label>
+              </div>
+
+              <div class="field-grid field-grid-two">
+                <label class="field field-tall">
+                  <span>Dietary or prep notes</span>
+                  <textarea id="dietary-notes" name="dietary_notes" rows="4" placeholder="Optional"></textarea>
+                </label>
+                <label class="field field-tall">
+                  <span>Internal handoff notes</span>
+                  <textarea id="handoff-notes" name="handoff_notes" rows="4" placeholder="Optional"></textarea>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button class="button button-primary" id="submit-button" type="submit">
+                  Send to Supabase
+                </button>
+                <p class="form-status" id="form-status">Waiting for configuration.</p>
+              </div>
+            </form>
+          </section>
+
+          <aside class="sidebar-shell">
+            <section class="sidebar-card config-card">
+              <p class="section-label">Connection state</p>
+              <h3>Supabase setup</h3>
+              <ul class="sidebar-list compact-list">
+                <li>Point the form at one Supabase project.</li>
+                <li>Use a publishable key only, never a secret key.</li>
+                <li>Back the public form with one isolated table and RLS.</li>
+              </ul>
+            </section>
+
+            <section class="sidebar-card" id="submission-feed">
+              <p class="section-label">Recent entries</p>
+              <h3>Latest submissions</h3>
+              <div class="submission-feed" id="recent-submissions">
+                <p class="empty-feed">Recent Supabase submissions will show here after configuration.</p>
+              </div>
+            </section>
           </aside>
-
-          <div class="menu-sections" id="menu-sections"></div>
         </section>
       </main>
     </div>
-
-    <template id="menu-section-template">
-      <section class="menu-section">
-        <div class="section-header">
-          <p class="section-label"></p>
-          <h3></h3>
-        </div>
-        <div class="items"></div>
-      </section>
-    </template>
-
-    <template id="menu-item-template">
-      <article class="menu-item">
-        <div class="item-copy">
-          <div class="item-header">
-            <h4></h4>
-            <span class="item-price"></span>
-          </div>
-          <p class="item-description"></p>
-        </div>
-        <div class="item-tags"></div>
-      </article>
-    </template>
 
     <script src="./app.js"></script>
   </body>
