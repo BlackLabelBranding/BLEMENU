@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 
+const LOGO_URL = "https://xopcttkrmjvwdddawdaa.supabase.co/storage/v1/object/public/BLEMENU/klincher_black%20(4).png";
+
 const menuSections = [
   {
     title: "Appetizers",
@@ -117,11 +119,7 @@ function App() {
         </nav>
 
         <div className="hero-copy">
-          <div className="logo-lockup" aria-label="Klincher logo">
-            <span className="logo-bolt" aria-hidden="true" />
-            <p className="logo-wordmark">Klincher</p>
-            <span className="logo-bolt" aria-hidden="true" />
-          </div>
+          <img className="hero-logo" src={LOGO_URL} alt="Klincher logo" />
           <p className="eyebrow">Game Day Kitchen</p>
           <h1>Eat Like You Play.</h1>
           <p className="hero-text">
