@@ -117,8 +117,13 @@ function App() {
         </nav>
 
         <div className="hero-copy">
-          <p className="eyebrow">Eat Like You Play</p>
-          <h1>BAD ASS FOOD FOR GAME NIGHT.</h1>
+          <div className="logo-lockup" aria-label="Klincher logo">
+            <span className="logo-bolt" aria-hidden="true" />
+            <p className="logo-wordmark">Klincher</p>
+            <span className="logo-bolt" aria-hidden="true" />
+          </div>
+          <p className="eyebrow">Game Day Kitchen</p>
+          <h1>Eat Like You Play.</h1>
           <p className="hero-text">
             Check what you want. Hit submit. Done.
           </p>
