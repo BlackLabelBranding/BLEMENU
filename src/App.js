@@ -110,9 +110,7 @@ function App() {
       <header className="hero" id="top">
         <div className="hero-backdrop" />
         <nav className="site-nav">
-          <a className="brand" href="#top">
-            Klincher
-          </a>
+          <div className="nav-spacer" aria-hidden="true" />
           <a className="nav-link" href="#menu">
             Order Now
           </a>
